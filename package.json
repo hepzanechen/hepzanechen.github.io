@@ -1,0 +1,15 @@
+{
+  "name": "zane-notes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test scripts/build.test.mjs"
+  },
+  "dependencies": {
+    "markdown-it": "14.3.3"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

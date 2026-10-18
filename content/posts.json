@@ -1,0 +1,16 @@
+[
+  {
+    "slug": "hello-notes",
+    "date": "2026-10-18",
+    "tag": "notes",
+    "zh": { "title": "从这里开始，留下一些思考", "summary": "一个中英双语的写作空间，记录物理计算、AI 工具，以及问题如何一步步变得清楚。" },
+    "en": { "title": "A place to think in public", "summary": "A bilingual space for computational physics, AI tools, and the process of making a question clearer." }
+  },
+  {
+    "slug": "x-skills",
+    "date": "2026-10-18",
+    "tag": "tools",
+    "zh": { "title": "X Skills：让研究过程更清楚", "summary": "从因果图到统计思维，把提问、证据和下一步行动整理成可以复用的工作方法。" },
+    "en": { "title": "X Skills: making research more explicit", "summary": "From causal graphs to statistical thinking: reusable workflows for questions, evidence, and useful next steps." }
+  }
+]
