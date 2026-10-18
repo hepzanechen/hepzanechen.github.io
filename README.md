@@ -50,7 +50,7 @@ Open http://localhost:8765. Rebuild after editing; `dist/` is generated and igno
 - `scripts/build.test.mjs`: translation coverage and generated-link checks.
 - `.github/workflows/pages.yml`: GitHub Pages build and deployment.
 
-Chinese is served at `/`, English at `/en/`. Articles render as HTML without JavaScript; JavaScript adds search, categories, and Mermaid diagrams where an article contains a Mermaid block. The site has no analytics or third-party fonts; Mermaid is loaded from jsDelivr only on pages that need it.
+Chinese is served at `/`, English at `/en/`. Articles render as HTML without JavaScript; JavaScript adds search, categories, Mermaid diagrams, and Giscus comments/reactions on article pages. The site has no analytics or third-party fonts; Mermaid and Giscus load only on pages that need them. Visitors use GitHub to comment and react, while discussions are moderated in the repository.
 
 ## 域名 / Domain
 

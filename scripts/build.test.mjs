@@ -44,3 +44,14 @@ test('Mermaid fences become renderable diagrams only on diagram pages',()=>{
   }
   assert.doesNotMatch(read('index.html'),/mermaid\.esm\.min\.mjs/);
 });
+
+test('article pages include Giscus comments and reactions',()=>{
+  for(const lang of ['','en/']){
+    const article=read(`${lang}posts/evaluating-ai-scientific-exploration/index.html`);
+    assert.match(article,/https:\/\/giscus\.app\/client\.js/);
+    assert.match(article,/data-reactions-enabled="1"/);
+    assert.match(article,/data-repo-id="R_kgDOJgmsWg"/);
+    assert.match(article,/data-category-id="DIC_kwDOJgmsWs4DI5ok"/);
+  }
+  assert.doesNotMatch(read('index.html'),/giscus\.app\/client\.js/);
+});
