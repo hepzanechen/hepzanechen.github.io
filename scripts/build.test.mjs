@@ -35,3 +35,12 @@ test('feeds contain every published article in the correct language',()=>{
   for(const p of posts)assert(feed.includes(`${lang==='zh'?'':'/en'}/posts/${p.slug}/`));
  }
 });
+
+test('Mermaid fences become renderable diagrams only on diagram pages',()=>{
+  for(const lang of ['','en/']){
+    const article=read(`${lang}posts/evaluating-ai-scientific-exploration/index.html`);
+    assert.match(article,/<div class="mermaid">/);
+    assert.match(article,/mermaid\.esm\.min\.mjs/);
+  }
+  assert.doesNotMatch(read('index.html'),/mermaid\.esm\.min\.mjs/);
+});
