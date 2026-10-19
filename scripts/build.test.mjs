@@ -55,3 +55,9 @@ test('article pages include Giscus comments and reactions',()=>{
   }
   assert.doesNotMatch(read('index.html'),/giscus\.app\/client\.js/);
 });
+
+
+test('the scientific exploration article carries its GPT-6.1 co-author credit',()=>{
+  assert.match(read('posts/evaluating-ai-scientific-exploration/index.html'),/与 GPT-6\.1 合作撰写/);
+  assert.match(read('en/posts/evaluating-ai-scientific-exploration/index.html'),/Co-written by GPT-6\.1/);
+});

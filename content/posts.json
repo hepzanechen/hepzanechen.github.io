@@ -36,6 +36,10 @@
     "en": {
       "title": "How to Evaluate AI's Scientific Exploration Ability",
       "summary": "A nine-activity framework for evaluating problem formation, modeling, measurement, correction, and closed-loop scientific exploration."
+    },
+    "credit": {
+      "zh": "与 GPT-6.1 合作撰写",
+      "en": "Co-written by GPT-6.1"
     }
   }
 ]
