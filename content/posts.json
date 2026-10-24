@@ -41,5 +41,22 @@
       "zh": "与 GPT-6.1 合作撰写",
       "en": "Co-written by GPT-6.1"
     }
+  },
+  {
+    "slug": "why-we-expect-the-next-note",
+    "date": "2026-10-24",
+    "tag": "notes",
+    "zh": {
+      "title": "旋律还没响起，我们为什么已经在等待它？",
+      "summary": "从音乐期待的来源，到“终于等到”的满足感：区分预测、偏好与奖赏，讨论统计学习、不确定性和音乐愉悦的研究。"
+    },
+    "en": {
+      "title": "Why Are We Already Waiting for the Next Note?",
+      "summary": "From musical expectation to the satisfaction of “finally”: separating prediction, preference, and reward through research on learning, uncertainty, and pleasure."
+    },
+    "credit": {
+      "zh": "AI generated · 根据作者的问题与写作方向生成",
+      "en": "AI generated · Based on the author’s question and editorial direction"
+    }
   }
 ]
