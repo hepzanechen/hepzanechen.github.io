@@ -1,0 +1,95 @@
+{
+  "purpose": "installed-timer diagnostic; not a controlled framework comparison",
+  "torch": "2.8.0+metax3.7.0.7",
+  "triton": "3.0.0",
+  "device": "MetaX C500",
+  "visible_memory_bytes": 16341008384,
+  "workload": {
+    "op": "torch.add",
+    "elements": 1048576,
+    "dtype": "float32",
+    "preallocated_output": true
+  },
+  "correctness": "exact CPU comparison passed",
+  "timers": {
+    "event": {
+      "signature": "(fn, warmup=25, rep=100, grad_to_none=None, quantiles=None, fast_flush=True, return_mode='mean')",
+      "source_sha256": "63a1a4be423b58320c76911e47d1411b47ca408942f87e571e2b0aa544ca3e6c"
+    },
+    "graph": {
+      "signature": "(fn, rep=20, grad_to_none=None, return_mode='mean')",
+      "source_sha256": "a46914e552db50580480a2133b2c4110faf2dc99d29135378734b8fc9ec7e305"
+    }
+  },
+  "samples": [
+    {
+      "sweep": 0,
+      "mode": "event",
+      "kwargs": {
+        "rep": 20,
+        "return_mode": "median",
+        "warmup": 5
+      },
+      "median_ms": 0.03481600061058998,
+      "timer_wall_seconds": 0.2052562148310244
+    },
+    {
+      "sweep": 0,
+      "mode": "graph",
+      "kwargs": {
+        "rep": 20,
+        "return_mode": "median"
+      },
+      "median_ms": 0.010448149405419827,
+      "timer_wall_seconds": 0.19616664992645383
+    },
+    {
+      "sweep": 1,
+      "mode": "graph",
+      "kwargs": {
+        "rep": 20,
+        "return_mode": "median"
+      },
+      "median_ms": 0.010386285372078419,
+      "timer_wall_seconds": 0.08280986919999123
+    },
+    {
+      "sweep": 1,
+      "mode": "event",
+      "kwargs": {
+        "rep": 20,
+        "return_mode": "median",
+        "warmup": 5
+      },
+      "median_ms": 0.03891199827194214,
+      "timer_wall_seconds": 0.026847442146390676
+    },
+    {
+      "sweep": 2,
+      "mode": "event",
+      "kwargs": {
+        "rep": 20,
+        "return_mode": "median",
+        "warmup": 5
+      },
+      "median_ms": 0.03891199827194214,
+      "timer_wall_seconds": 0.027021518908441067
+    },
+    {
+      "sweep": 2,
+      "mode": "graph",
+      "kwargs": {
+        "rep": 20,
+        "return_mode": "median"
+      },
+      "median_ms": 0.01036548987030983,
+      "timer_wall_seconds": 0.09556326409801841
+    }
+  ],
+  "limitations": [
+    "Only three alternating sweeps",
+    "Different timer cache and sampling semantics",
+    "No FlagGems/Helion speed comparison",
+    "Does not establish historical compiler-wheel behavior"
+  ]
+}

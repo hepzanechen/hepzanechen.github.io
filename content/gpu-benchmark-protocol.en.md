@@ -125,4 +125,22 @@ The runner must check the protocol. Changes to source, candidates, models, timer
 
 The next useful experiment is a common-timer comparison of Default, selected candidates, and the actual complete native `torch.mm` call on one card, reporting graph replay and cache-cleared execution separately. Only then can a microsecond difference be attributed meaningfully to a better search or implementation.
 
-*The author supplied the question and editorial direction; AI assisted with writing and source review. Historical measurements were collected on October 24, 2026. This article does not claim a new GPU experiment has been completed.*
+## Addendum: a short GPU diagnostic on November 9
+
+We rented a separate 16GB C500 to inspect an actual installation: PyTorch `2.8.0+metax3.7.0.7`, Triton `3.0.0`. This new environment does not replace the historical 64GB MM environment.
+
+Preflight exposed two concrete differences: its graph timer rejects `quantiles` and requires a non-default stream. The diagnostic succeeded after selecting the common scalar `return_mode="median"` interface and explicitly using a side stream for graph timing.
+
+The workload was FP32 `torch.add` over 1,048,576 elements with preallocated output, checked exactly against CPU results. Three sweeps used event/graph, graph/event, then event/graph order. Event timing requested warmup=5ms and rep=20ms; graph timing requested rep=20ms and used its own fixed warmup and repetition mechanism. These are visibly different protocols, not a claim of identical settings.
+
+| Timer | Median of the three returned measurements |
+|---|---:|
+| Event | 38.912 µs |
+| Graph | 10.386 µs |
+
+The approximately 3.75× numerical difference for the same operation shows how strongly a measurement regime can affect a reported number. Cache behavior, graph execution, stream, and sampling all changed; this cannot be attributed entirely to caching or presented as a kernel or framework speedup. Three sweeps do not establish a stable performance ranking.
+
+Download the [measured JSON](/assets/gpu-benchmark-protocol/gpu-timer-result-20261109.json) and [executed script](/assets/gpu-benchmark-protocol/gpu_timer_diagnostic.py). The JSON retains individual returns, arguments, versions, visible memory, function signatures, and source hashes. Configure the MACA/runtime environment before running the script. Inspecting this installation still does not establish the behavior of the historical 3.6 wheel.
+
+
+*The author supplied the question and editorial direction; AI assisted with writing and source review. Historical MM measurements were collected on October 24, 2026; the supplemental timer diagnostic was completed on November 9, 2026.*

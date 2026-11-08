@@ -132,4 +132,22 @@ validation:
 
 下一步最有用的实验，是同一卡上将 Default、选中的候选和原生 `torch.mm` 的实际完整调用交给共同计时器，分别测 graph replay 与清 L2 场景。只有这些边界清楚，才值得讨论几微秒的差异来自更好的搜索，还是更换了测量问题。
 
-*本文由作者提出问题并指导方向，使用 AI 辅助整理、源码核查与写作。历史结果于 2026-10-24 采集；本文未将新的 GPU 实验描述为已完成。*
+## 补充：11 月 9 日的短时真机诊断
+
+为核查实际安装行为，我们另租了一台 16GB C500，镜像中的 PyTorch 为 `2.8.0+metax3.7.0.7`、Triton 为 `3.0.0`。这是新的计时诊断环境，不能用来替代前述 64GB MM 的历史环境。
+
+预检遇到了两个真实问题：该 graph timer 不接受 `quantiles` 参数，并要求调用方使用非默认 stream。改用双方支持的 `return_mode="median"`，并为 graph 显式设置 side stream 后，诊断通过。
+
+测试对象是预分配输出的 FP32 `torch.add`，共 1,048,576 个元素，先与 CPU 结果作精确比较；三个 sweep 的顺序为 event/graph、graph/event、event/graph。event 请求 warmup=5ms、rep=20ms；graph 请求 rep=20ms，使用自身固定预热与内部重复机制。两边协议有意保持可见，未宣称完全相同。
+
+| timer | 三轮返回值的中位数 |
+|---|---:|
+| event | 38.912 µs |
+| graph | 10.386 µs |
+
+同一个运算出现约 3.75 倍的数值差异，说明计时场景足以显著改变报告值。这里同时改变了缓存、graph 调用方式、stream 和采样机制，不能把差异全部归因于缓存，更不能称作算子实现或框架加速。仅三轮也不足以建立稳定的性能排名。
+
+[下载实测 JSON](/assets/gpu-benchmark-protocol/gpu-timer-result-20261109.json) 与[实际运行脚本](/assets/gpu-benchmark-protocol/gpu_timer_diagnostic.py)。JSON 含每轮原始返回值、调用参数、版本、可见显存、函数签名及源码 SHA-256。脚本执行前需按环境设置 MACA／运行时路径。这个新镜像的检查仍不能证明历史 3.6 wheel 的函数行为。
+
+
+*本文由作者提出问题并指导方向，使用 AI 辅助整理、源码核查与写作。历史 MM 结果于 2026-10-24 采集，补充计时诊断于 2026-11-09 完成。*
