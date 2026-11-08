@@ -58,5 +58,22 @@
       "zh": "AI generated · 根据作者的问题与写作方向生成",
       "en": "AI generated · Based on the author’s question and editorial direction"
     }
+  },
+  {
+    "slug": "gpu-benchmark-protocol",
+    "date": "2026-11-09",
+    "tag": "tools",
+    "zh": {
+      "title": "GPU 算子调优：如何固定一套可信的计时流程",
+      "summary": "从 FlagOS 与 Helion 的 benchmark 源码出发，区分执行时延、搜索成本和缓存，并记录一次 warmup 字段与实际行为的纠正。"
+    },
+    "en": {
+      "title": "GPU Autotuning: Freezing a Trustworthy Timing Protocol",
+      "summary": "A source-based look at FlagOS and Helion benchmarks: execution latency, search cost, caches, and a correction about recorded warmup."
+    },
+    "credit": {
+      "zh": "AI 辅助写作与源码核查 · 作者提出问题并指导方向",
+      "en": "AI-assisted writing and source review · Question and editorial direction by the author"
+    }
   }
 ]

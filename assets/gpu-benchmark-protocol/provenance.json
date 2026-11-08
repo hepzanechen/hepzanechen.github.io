@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-24",
+  "device": "MetaX C500 64GB",
+  "shape_MNK": [
+    1024,
+    1024,
+    1024
+  ],
+  "input_dtype": "bfloat16",
+  "output_dtype": "bfloat16",
+  "layout": "contiguous",
+  "FlagGems": "2d50c88c91e590ec8246c0ea20977aaeef9edd85",
+  "FlagTune_Python": "2dc31aecc883ab04c8f7a1c1dab8b321ae8ed109",
+  "compiler_wheel": "flagtree-0.7.0.post2+metax3.6",
+  "wheel_sha256": "4e113cc9e94e5788400ccc11bbd3d8d29739255a517c801784115dff6bc4dda1",
+  "records": 424,
+  "finite": 371,
+  "nonfinite": 53,
+  "unmeasured_after_pruning": 6,
+  "csv_sha256": "12e4c3640973847a4e1283097e14281ad14b76b7ecd1482eaf3028a3f7f9dcdb",
+  "limitations": [
+    "Partial exploration exported from official BenchmarkCache; no complete worker result",
+    "Finite timings do not establish per-config correctness",
+    "Neighbors not independently rebenchmarked",
+    "Prior correctness run warmed JIT cache",
+    "Actual wheel timer source not captured; warmup field alone does not establish warmup behavior"
+  ]
+}
